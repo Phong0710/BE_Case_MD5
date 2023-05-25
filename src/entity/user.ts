@@ -17,8 +17,8 @@ export class User {
     username: string;
     @Column({type: "varchar", length: 255})
     password: string;
-    @ManyToOne(()=> Role, (role)=> role.users)
-    role : number;
+    @ManyToOne(()=> Role, (role)=> role.users,)
+    role : number=2;
     @OneToMany(()=>Contract,(contract)=>contract.user)
     contract:Contract[];
     @OneToMany(()=>User,(user)=>user.house)
