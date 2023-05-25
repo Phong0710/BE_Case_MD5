@@ -10,7 +10,7 @@ class HouseService {
 
     findAllHouse = async () => {
 
-        let houses = await this.houseRepository.find({
+        return  await this.houseRepository.find({
             relations: {
                 wards: true,
                 district: true,
@@ -18,7 +18,7 @@ class HouseService {
                 image: true
             }
         })
-        return houses
+
     }
 
     findHouse = async (query) => {

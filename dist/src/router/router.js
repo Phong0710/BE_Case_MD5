@@ -4,8 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const houserRouter_1 = __importDefault(require("./houserRouter/houserRouter"));
+const userRouter_1 = __importDefault(require("./userRouter"));
+const houseRouter_1 = __importDefault(require("./houseRouter/houseRouter"));
 const router = (0, express_1.Router)();
-router.use('/user', houserRouter_1.default);
+router.use('/users', userRouter_1.default);
+router.use('/house', houseRouter_1.default);
 exports.default = router;
 //# sourceMappingURL=router.js.map
