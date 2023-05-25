@@ -11,9 +11,9 @@ export class Wards {
     name:string;
     @Column()
     type:string;
-    @ManyToOne(()=>District,(quan)=>quan.phuong)
-    quan: District;
-    @OneToMany(()=>House,(house)=>house.phuong)
+    @ManyToOne(()=>District,(district)=>district.wards)
+    district: District;
+    @OneToMany(()=>House,(house)=>house.wards)
     house:House[]
 
 }

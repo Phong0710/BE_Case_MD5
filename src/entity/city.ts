@@ -12,8 +12,8 @@ export class City{
     type:string;
     @Column()
     slug:string;
-    @OneToMany(()=>District,(quan)=>quan.city)
-    quan:District[];
+    @OneToMany(()=>District,(district)=>district.city)
+    district:District[];
     @OneToMany(()=>House,(house)=>house.city)
     house:House[]
 }

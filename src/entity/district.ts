@@ -12,11 +12,11 @@ export class District {
     @Column()
     type:string;
 
-    @ManyToOne(()=>City,(city)=>city.quan)
+    @ManyToOne(()=>City,(city)=>city.district)
     city: City;
-    @OneToMany(()=>Wards,(phuong)=>phuong.quan)
-    phuong:Wards[];
-    @OneToMany(()=>House,(house)=>house.quan)
+    @OneToMany(()=>Wards,(wards)=>wards.district)
+    wards:Wards[];
+    @OneToMany(()=>House,(house)=>house.district)
     house:House[]
 
 }

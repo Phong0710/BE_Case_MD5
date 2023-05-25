@@ -24,12 +24,12 @@ export class House {
     @ManyToOne(() => User, (user) => user.house)
     user: User;
 
-    @ManyToOne(() => Wards, (phuong) => phuong.house)
-    phuong: Wards;
+    @ManyToOne(() => Wards, (wards) => wards.house)
+    wards: Wards;
     @ManyToOne(() => House_status, (houseStatus) => houseStatus.house)
     houseStatus: House_status;
-    @ManyToOne(() => District, (quan) => quan.house)
-    quan: District;
+    @ManyToOne(() => District, (district) => district.house)
+    district: District;
     @ManyToOne(() => City, (city) => city.house)
     city: City;
 }
