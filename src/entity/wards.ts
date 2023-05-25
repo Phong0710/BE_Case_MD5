@@ -15,5 +15,4 @@ export class Wards {
     district: District;
     @OneToMany(()=>House,(house)=>house.wards)
     house:House[]
-
 }
