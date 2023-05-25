@@ -1,8 +1,8 @@
 import {Router} from "express";
-import {auth} from "../middleware/auth";
-import houserRouter from "./houserRouter/houserRouter";
+import houseRouter from "./houserRouter/houserRouter";
+
 
 
 const router = Router();
-router.use('/user',houserRouter)
+router.use('/user',houseRouter)
 export default router;
