@@ -1,7 +1,6 @@
 import {Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn} from "typeorm";
 import {District} from "./district";
 import {House} from "./house";
-
 @Entity()
 export class City{
     @PrimaryColumn()
