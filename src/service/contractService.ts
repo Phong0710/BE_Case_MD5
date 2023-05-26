@@ -9,15 +9,12 @@ class ContractService {
     }
 
     getContractByUserId = async (id) => {
-        let contract = await this.contractRepository.find({
-            relation: {
-                house:true
-            },
-            where: {
-                houseId:id
-            }
-        })
-        return contract
+       return  await AppDataSource
+            .getRepository(Contract)
+            .createQueryBuilder("contract")
+            .leftJoinAndSelect('contract.house', 'house')
+            .where( { user: id })
+            .getOne()
     }
     getContractByID = async (id) => {
     let contract = await AppDataSource.createQueryBuilder()
@@ -40,6 +37,7 @@ class ContractService {
             })
             .where("id=:id",{id:id})
             .execute()
+
 
         return contract
     }

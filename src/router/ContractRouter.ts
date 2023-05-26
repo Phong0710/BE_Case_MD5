@@ -4,9 +4,8 @@ import {auth} from "../middleware/auth";
 
 const contractRouter =Router()
 
-contractRouter.get("",ContractController.getAll)
-contractRouter.get("/:id",ContractController.getcontractbyId)
+contractRouter.get("",auth,ContractController.getContractByIdUser)
 contractRouter.put("/:id",ContractController.updateContractByClient)
-contractRouter.post("/createContract",ContractController.addContractByClient)
+contractRouter.post("/",ContractController.addContractByClient)
 
 export default contractRouter
