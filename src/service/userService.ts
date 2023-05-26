@@ -19,7 +19,6 @@ class UserService {
                                                         where username = "${user.username}"`)
 
         let userFind = checkUser[0]
-        console.log(userFind)
         if(userFind){
             let pass = await bcrypt.compare(user.password,userFind.password)
             if(pass){

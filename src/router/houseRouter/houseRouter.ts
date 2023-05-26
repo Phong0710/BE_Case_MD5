@@ -5,6 +5,7 @@ import {Router} from 'express'
 // import {checkRoleLandlord} from "../middleware/checkRoleLandlord";
 // import {checkOwnerShip} from "../middleware/checkOwnerShip";
 import houseController from "../../controller/houseController";
+import {auth} from "../../middleware/auth";
 
 const houseRouter = Router()
 // houseRouter.get('/search', houseController.searchHouse)
@@ -12,8 +13,8 @@ const houseRouter = Router()
 houseRouter.get('/', houseController.showAllHouse);
 houseRouter.get('/:id', houseController.showHouseById);
 
-houseRouter.post('/',
-    // auth, checkRoleLandlord,
+houseRouter.post('/',auth,
+    // checkRoleLandlord,
     houseController.createHouse);
 houseRouter.put('/:id',houseController.EditHouse);
 houseRouter.delete('/:id', houseController.DeleteHouseByOwnerShip);
