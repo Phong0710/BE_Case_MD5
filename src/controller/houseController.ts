@@ -6,9 +6,9 @@ import {decode} from "jsonwebtoken";
 class HouseController {
 
     createHouse = async (req: Request, res: Response) => {
-        // let id=req[decode].id
-        let id = 2
+         let id=req["decode"].id
         let house = await houseService.addHouse(req.body, id)
+
         res.status(201).json(house.id);
         res.end();
     }
