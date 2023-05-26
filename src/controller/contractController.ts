@@ -30,19 +30,16 @@ class ContractController{
         let price:number = house.price
         let startMonth =req.body.startMonth
         let endMonth = req.body.endMonth
-        let month:number =this.calculatorOfTheMonth(startMonth,endMonth)
-        let cost = price*month
+        let days:number =this.calculatorOfTheMonth(startMonth,endMonth)
+        let cost = price*days
         await contractService.addContractByClient(houseId,req.body,cost,parseInt(userId),price)
         res.status(200).json("thêm hợp đồng thành công")
     }
     calculatorOfTheMonth = (startMonth, endMonth) => {
-        let month1 = new Date(startMonth)
-        let month2 = new Date(endMonth)
-        let numberOfMonths=(month2.getFullYear()-month1.getFullYear()*12)
-        numberOfMonths -= month1.getMonth()
-        numberOfMonths += month2.getMonth()
-        return numberOfMonths <= 0?0: numberOfMonths
+        const startDate = new Date(startMonth);
+        const endDate = new Date(endMonth);
+        const delta:number = (endDate.getTime() - startDate.getTime()) / (86400000) + 1;
+        return delta <= 0?0: delta
     }
-
 }
 export default new ContractController()
