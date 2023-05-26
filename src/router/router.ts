@@ -5,7 +5,7 @@ import houseRouter from "./houseRouter/houseRouter";
 
 
 const router = Router();
-router.use('/users',userRouter);
-
+router.use('',userRouter);
 router.use('/house',houseRouter)
+
 export default router;
