@@ -8,7 +8,6 @@ class ContractController{
     getContractByIdUser = async (req: Request, res: Response) => {
         let id = req["decode"].id
         let contract = await ContractService.getContractByUserId(id);
-        console.log(contract)
        if (contract===null){
            res.status(201).json({
                message:'You are anonymous'
