@@ -9,4 +9,7 @@ const router = Router();
 router.use('/users',userRouter);
 router.use('/house',houseRouter)
 router.use('/contract',contractRouter);
+router.use('',userRouter);
+router.use('/house',houseRouter)
+
 export default router;

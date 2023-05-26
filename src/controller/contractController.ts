@@ -31,12 +31,12 @@ class ContractController{
         let price:number = house.price
         let startmonth =req.body.startMonth
         let endmonth = req.body.endMonth
-        let month:number =this.caculatoOfTheMonth(startmonth,endmonth)
+        let month:number =this.caculatorOfTheMonth(startmonth,endmonth)
         let cost = price*month
         await contractService.addContractByClient(houseId,req.body,cost,parseInt(userId),price)
         res.status(200).json("thêm hợp đồng thành công")
     }
-    caculatoOfTheMonth = (startmonth,endmonth) => {
+    caculatorOfTheMonth = (startmonth,endmonth) => {
         let month1 = new Date(startmonth)
         let month2 = new Date(endmonth)
         let numberOfMonths=(month2.getFullYear()-month1.getFullYear()*12)

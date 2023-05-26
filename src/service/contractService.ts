@@ -31,17 +31,19 @@ class ContractService {
         let contract = await this.contractRepository.find()
         return contract
     }
-    updateContractByClient = async (id,data)=>{
-        let contract = await this.contractRepository.createQueryBuilder()
+    updateContractByClient = async (id, data)    => {
+
+        let contract = await this.contractRepository
+            .createQueryBuilder()
             .update()
             .set({
-                startmonth: data.startmonth,
-                endmonth: data.endmonth
+                startMonth: data.startMonth,
+                endMonth: data.endMonth,
             })
-            .where("id=:id",{id:id})
-            .execute()
+            .where("id = :id", {id: id})
+            .execute();
 
-        return contract
+        return contract;
     }
     addContractByClient= async(id,data,cost,userId,price)=>{
         await this.contractRepository.createQueryBuilder()

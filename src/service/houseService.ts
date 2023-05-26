@@ -10,7 +10,6 @@ class HouseService {
     }
 
     findAllHouse = async () => {
-
         let houses = await this.houseRepository.find({
             relations: {
                 wards: true,
@@ -70,17 +69,23 @@ class HouseService {
         await this.houseRepository
             .createQueryBuilder()
             .update({
-                houseStatus:4
+                houseStatus: 4
             }).where({id: id})
             .execute();
     }
     findHouseById = async (id) => {
-        return await this.houseRepository.createQueryBuilder("house")
-            .innerJoinAndSelect("house.user", "user")
-            .leftJoinAndSelect("house.image", "image")
-            .where("house.id = :id", {id: id})
-            .getOne()
-
+        return await this.houseRepository.findOne({
+            relations: {
+                user: true,
+                image: true,
+            }, where: {
+                id: +id
+            }, select: {
+                user: {
+                    name: true
+                }
+            }
+        })
     }
 }
 
