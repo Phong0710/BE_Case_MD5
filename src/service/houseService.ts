@@ -1,5 +1,6 @@
 import {AppDataSource} from "../data-source";
 import {House} from "../entity/house";
+import {query} from "express";
 
 class HouseService {
     private houseRepository;
@@ -9,8 +10,7 @@ class HouseService {
     }
 
     findAllHouse = async () => {
-
-        return  await this.houseRepository.find({
+        let houses = await this.houseRepository.find({
             relations: {
                 wards: true,
                 district: true,
@@ -18,7 +18,7 @@ class HouseService {
                 image: true
             }
         })
-
+        return houses
     }
 
     findHouse = async (query) => {
@@ -74,15 +74,19 @@ class HouseService {
             .execute();
     }
     findHouseById = async (id) => {
-        return await this.houseRepository.createQueryBuilder("house")
-            .innerJoinAndSelect("house.user", "user")
-            .leftJoinAndSelect("house.image", "image")
-            .where("house.id = :id", {id: id})
-            .getOne()
-
+        return await this.houseRepository.findOne({
+            relations: {
+                user: true,
+                image: true,
+            }, where: {
+                id: +id
+            }, select: {
+                user: {
+                    name: true
+                }
+            }
+        })
     }
-
-
 }
 
 export default new HouseService()
