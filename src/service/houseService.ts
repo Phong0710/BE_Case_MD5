@@ -1,5 +1,6 @@
 import {AppDataSource} from "../data-source";
 import {House} from "../entity/house";
+import {query} from "express";
 
 class HouseService {
     private houseRepository;
@@ -81,8 +82,6 @@ class HouseService {
             .getOne()
 
     }
-
-
 }
 
 export default new HouseService()

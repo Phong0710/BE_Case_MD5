@@ -1,15 +1,17 @@
 import {Request, Response} from "express";
 import houseService from "../service/houseService";
 import {decode} from "jsonwebtoken";
+import imageService from "../service/imageService";
 
 
 class HouseController {
 
     createHouse = async (req: Request, res: Response) => {
-        // let id=req[decode].id
-        let id = 2
+         let id=req["decode"].id
         let house = await houseService.addHouse(req.body, id)
-        res.status(201).json(house.id);
+        let idhouse = house.id
+        await imageService.addImage(idhouse,req.body.image)
+        res.status(201).json("create house successfully");
         res.end();
     }
     showAllHouse = async (req: Request, res: Response) => {
