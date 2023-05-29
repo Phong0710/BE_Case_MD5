@@ -10,7 +10,7 @@ export class User {
     @Column({type: "varchar", length: 255})
     name: string;
     @Column()
-    phoneNumber : number;
+        phoneNumber : number;
     @Column({type: "varchar", length: 255})
     address: string;
     @Column({type: "varchar", length: 255})
@@ -18,7 +18,7 @@ export class User {
     @Column({type: "varchar", length: 255})
     password: string;
     @ManyToOne(()=> Role, (role)=> role.users,)
-    role : number=2;
+    role : number;
     @OneToMany(()=>Contract,(contract)=>contract.user)
     contract:Contract[];
     @OneToMany(()=>User,(user)=>user.house)
