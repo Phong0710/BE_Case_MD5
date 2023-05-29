@@ -35,9 +35,9 @@ class HouseService {
         } else {
             return await this.houseRepository.createQueryBuilder("house")
                 .where("house.price >= :priceLow", {priceLow: query.priceLow})
+                .andWhere("house.price <= :priceHigh", {priceHigh: query.priceHigh})
                 .getMany()
         }
-
     }
 
     addHouse = async (house, id) => {
