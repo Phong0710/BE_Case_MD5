@@ -13,7 +13,7 @@ houseRouter.get('/search', houseController.searchHouse)
 houseRouter.get('/', houseController.showAllHouse);
 houseRouter.get('/:id', houseController.showHouseById);
 
-houseRouter.post('/',auth,
+houseRouter.post('/', auth,
     // checkRoleLandlord,
     houseController.createHouse);
 houseRouter.put('/:id', houseController.EditHouse);

@@ -54,15 +54,9 @@ class HouseController {
         if (!req.query.sort) {
             req.query.sort = "0"
         }
-
         console.log("query after set default:", req.query)
         let house = await houseService.findHouse(req.query)
         res.status(201).json(house);
     }
-
-
-
-
 }
-
 export default new HouseController();
