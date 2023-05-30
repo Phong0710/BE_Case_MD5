@@ -38,7 +38,6 @@ class HouseController {
         res.end();
     }
 
-
 }
 
 export default new HouseController();

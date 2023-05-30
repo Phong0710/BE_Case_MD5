@@ -7,6 +7,7 @@ const userService_1 = __importDefault(require("../service/userService"));
 class UserController {
     constructor() {
         this.Register = async (req, res) => {
+            console.log("da vao create");
             let check = await userService_1.default.checkUserRegister(req.body);
             if (!check) {
                 await userService_1.default.createUser(req.body);
@@ -17,8 +18,10 @@ class UserController {
             }
         };
         this.Login = async (req, res) => {
+            console.log("da vao login");
             let userData = req.body;
             let user = await userService_1.default.checkUser(userData);
+            console.log(user);
             res.status(200).json(user);
         };
     }

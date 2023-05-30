@@ -4,6 +4,7 @@ import userService from "../service/userService";
 class UserController{
 
     Register = async(req: Request, res: Response)=>{
+        console.log("da vao create")
         let check = await userService.checkUserRegister(req.body)
         if(!check){
              await userService.createUser(req.body)
@@ -13,8 +14,10 @@ class UserController{
         }
     }
     Login = async(req: Request, res: Response)=>{
+        console.log("da vao login")
         let userData = req.body;
         let user = await userService.checkUser(userData)
+        console.log(user)
         res.status(200).json(user)
     }
 }
