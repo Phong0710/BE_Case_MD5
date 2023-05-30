@@ -13,6 +13,21 @@ class ImageService {
             this.imageRepository.save({house:id,imageURL:`${item}`})
         })
     }
+    upDateImage = async (data,id) => {
+        await this.deleteImage(id);
+        await this.addImage(id,data)
+
+    }
+
+    deleteImage = async (idHouse) => {
+        await this.imageRepository
+            .createQueryBuilder('users')
+            .delete()
+            .from(Image)
+            .where({ house: idHouse })
+            .execute()
+    }
+
 
 
 }
