@@ -2,7 +2,7 @@ import { User } from "../entity/user";
 declare class UserService {
     private userRepository;
     constructor();
-    checkUser: (user: any) => Promise<string>;
+    checkUser: (user: any) => Promise<any>;
     createUser: (user: any) => Promise<User>;
     checkUserRegister: (user: any) => Promise<any>;
 }

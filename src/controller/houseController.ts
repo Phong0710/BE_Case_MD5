@@ -37,6 +37,30 @@ class HouseController {
         res.status(201).json("DeleteHouse ok ");
         res.end();
     }
+    searchHouse = async (req: Request, res: Response) => {
+        console.log(req.query)
+        if (!req.query.priceLow) {
+            req.query.priceLow = "0";
+        }
+        if (!req.query.priceHigh) {
+            req.query.priceHigh = "1000000"
+        }
+        if (!req.query.areaLow) {
+            req.query.areaLow = "0"
+        }
+        if (!req.query.areaHigh) {
+            req.query.areaHigh = "1000"
+        }
+        if (!req.query.sort) {
+            req.query.sort = "0"
+        }
+
+        console.log("query after set default:", req.query)
+        let house = await houseService.findHouse(req.query)
+        res.status(201).json(house);
+    }
+
+
 
 }
 

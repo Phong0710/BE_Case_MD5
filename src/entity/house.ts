@@ -12,6 +12,8 @@ export class House {
     @PrimaryGeneratedColumn()
     id: number;
     @Column()
+    nameHouse:string
+    @Column()
     price: number
     @Column()
     area: number

@@ -8,8 +8,8 @@ import {auth} from "../../middleware/auth";
 import houseController from "../../controller/houseController";
 
 const houseRouter = Router()
-// houseRouter.get('/search', houseController.searchHouse)
-//
+houseRouter.get('/search', houseController.searchHouse)
+
 houseRouter.get('/', houseController.showAllHouse);
 houseRouter.get('/:id', houseController.showHouseById);
 

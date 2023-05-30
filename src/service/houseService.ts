@@ -1,6 +1,8 @@
 import {AppDataSource} from "../data-source";
 import {House} from "../entity/house";
 import {query} from "express";
+import {House_status} from "../entity/house_status";
+import {City} from "../entity/city";
 
 class HouseService {
     private houseRepository;
@@ -35,21 +37,30 @@ class HouseService {
         } else {
             return await this.houseRepository.createQueryBuilder("house")
                 .where("house.price >= :priceLow", {priceLow: query.priceLow})
+                .andWhere("house.price <= :priceHigh", {priceHigh: query.priceHigh})
                 .getMany()
         }
-
     }
 
     addHouse = async (house, id) => {
         let newHouse = new House();
+        newHouse.nameHouse = house.nameHouse;
         newHouse.price = house.price;
         newHouse.area = house.area;
         newHouse.description = house.description;
-        newHouse.houseStatus = house.houseStatus;
+        // newHouse.houseStatus = house.houseStatus;
+        newHouse.houseStatus = await AppDataSource.getRepository(House_status).findOneBy({
+                id: 3
+            }
+        );
         newHouse.user = id;
         newHouse.wards = house.wards
         newHouse.district = house.district;
-        newHouse.city = house.city;
+        newHouse.city = await AppDataSource.getRepository(City).findOneBy({
+                id: 1
+            }
+        );
+
         await this.houseRepository.save(newHouse);
         return newHouse
     }
