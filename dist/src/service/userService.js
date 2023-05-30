@@ -33,9 +33,11 @@ class UserService {
                             role: 2
                         };
                     }
-                    return jsonwebtoken_1.default.sign(payload, auth_1.SECRET, {
+                    let token = jsonwebtoken_1.default.sign(payload, auth_1.SECRET, {
                         expiresIn: 3600 * 10 * 100
                     });
+                    payload['token'] = token;
+                    return payload;
                 }
                 else {
                     return "wrong password";

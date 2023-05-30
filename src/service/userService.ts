@@ -1,4 +1,4 @@
-import {User} from "../entity/user";
+    import {User} from "../entity/user";
 import {AppDataSource} from "../data-source";
 import bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken"
@@ -36,9 +36,11 @@ class UserService {
                         role:2
                     }
                 }
-                return jwt.sign(payload,SECRET,{
+                let token = jwt.sign(payload,SECRET,{
                     expiresIn:3600*10*100
                 })
+                payload['token']= token
+                return payload
             }else{
                 return "wrong password"
             }

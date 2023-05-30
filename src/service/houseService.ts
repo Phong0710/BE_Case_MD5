@@ -44,6 +44,7 @@ class HouseService {
 
     addHouse = async (house, id) => {
         let newHouse = new House();
+        newHouse.nameHouse = house.nameHouse;
         newHouse.price = house.price;
         newHouse.area = house.area;
         newHouse.description = house.description;
@@ -59,6 +60,7 @@ class HouseService {
                 id: 1
             }
         );
+
         await this.houseRepository.save(newHouse);
         return newHouse
     }
