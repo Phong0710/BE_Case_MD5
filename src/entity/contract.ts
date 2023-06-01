@@ -11,9 +11,9 @@ export class Contract{
     @Column()
     price:number;
     @Column()
-    startMonth:Date;
+    startDay:Date;
     @Column()
-    endMonth:Date;
+    endDay:Date;
     @Column()
     cost:number;
     @ManyToOne(()=> House, (house)=> house.contract)

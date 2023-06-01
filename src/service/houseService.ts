@@ -3,6 +3,8 @@ import {House} from "../entity/house";
 import {query} from "express";
 import {House_status} from "../entity/house_status";
 import {City} from "../entity/city";
+import {District} from "../entity/district";
+import {Wards} from "../entity/wards";
 
 class HouseService {
     private houseRepository;
@@ -68,6 +70,7 @@ class HouseService {
         await this.houseRepository
             .createQueryBuilder()
             .update({
+                nameHouse:house.nameHouse,
                 price: house.price,
                 area: house.area,
                 description: house.description,
@@ -102,6 +105,31 @@ class HouseService {
             }
         })
     }
+    getDistrictById = async () => {
+        try {
+            const result = await AppDataSource.getRepository(District).find({});
+
+            return result;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    };
+
+    getWardsById = async (id) => {
+        try {
+            return await AppDataSource.createQueryBuilder()
+                .select("ward")
+                .from(Wards, "ward")
+                // .innerJoinAndSelect("ward.district", "district")
+                .where("ward.districtId = :id", {id: id})
+                .getMany()
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    };
+
 }
 
 export default new HouseService()

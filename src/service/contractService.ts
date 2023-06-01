@@ -48,8 +48,8 @@ class ContractService {
             .into(Contract)
             .values({
                 price:price,
-                startMonth:data.startMonth,
-                endMonth:data.endMonth,
+                startDay:data.startDay,
+                endDay:data.endDay,
                 cost:cost,
                 user:userId,
                 house:id,

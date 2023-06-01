@@ -11,6 +11,7 @@ const houseRouter = Router()
 houseRouter.get('/search', houseController.searchHouse)
 
 houseRouter.get('/', houseController.showAllHouse);
+
 houseRouter.get('/:id', houseController.showHouseById);
 
 houseRouter.post('/',auth,
