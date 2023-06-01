@@ -1,4 +1,4 @@
-import {Router} from 'express'
+    import {Router} from 'express'
 import {auth} from "../../middleware/auth";
 
 // import {checkRoleClient} from "../middleware/checkRoleClient";
@@ -11,6 +11,7 @@ const houseRouter = Router()
 houseRouter.get('/search', houseController.searchHouse)
 
 houseRouter.get('/', houseController.showAllHouse);
+
 houseRouter.get('/:id', houseController.showHouseById);
 
 houseRouter.post('/', auth,

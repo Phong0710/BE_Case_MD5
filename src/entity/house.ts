@@ -11,6 +11,7 @@ import {City} from "./city";
 export class House {
     @PrimaryGeneratedColumn()
     id: number;
+
     @Column()
     price: number
     @Column()
@@ -35,4 +36,5 @@ export class House {
     district: District;
     @ManyToOne(() => City, (city) => city.house)
     city: City;
+
 }
