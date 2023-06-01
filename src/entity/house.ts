@@ -15,6 +15,9 @@ export class House {
     price: number
     @Column()
     area: number
+
+    @Column( {name:"nameHouse"})
+    nameHouse: string
     @Column({type: "varchar", length: 300})
     description: string;
     @OneToMany(() => Image, (image) => image.house)
