@@ -20,7 +20,9 @@ class HouseController {
         res.end();
     }
     showHouseById = async (req: Request, res: Response) => {
+
         let id = req.params.id
+        console.log(id)
         let house = await houseService.findHouseById(id)
         res.status(201).json(house);
         res.end();
