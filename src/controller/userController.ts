@@ -2,8 +2,8 @@ import {Request,Response} from 'express'
 import userService from "../service/userService";
 
 class UserController{
-
     Register = async(req: Request, res: Response)=>{
+        console.log(req.body)
         let check = await userService.checkUserRegister(req.body)
         if(!check){
              await userService.createUser(req.body)
@@ -15,7 +15,8 @@ class UserController{
     Login = async(req: Request, res: Response)=>{
         let userData = req.body;
         let user = await userService.checkUser(userData)
-        res.status(200).json(user)
+            res.status(200).json(user)
+
     }
 }
 

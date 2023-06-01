@@ -26,6 +26,7 @@ class UserService {
                 if(userFind.roleId=== 1){
                     payload = {
                         id:userFind.id,
+                        name:userFind.name,
                         username :userFind.username,
                         role:1
                     }

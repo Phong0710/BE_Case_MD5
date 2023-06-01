@@ -24,22 +24,22 @@ class ContractController{
         res.status(200).json(contract);
     }
     addContractByClient = async(req:Request, res:Response)=>{
+        console.log( req.body)
         let userId = req["decode"].id
         let houseId = req.body.houseId;
         let house = await houseService.findHouseById(houseId)
         let price:number = house.price
-        let startMonth =req.body.startMonth
-        let endMonth = req.body.endMonth
-        let days:number =this.calculatorOfTheMonth(startMonth,endMonth)
-        let cost = price*days
+        let startDay = req.body.startDay.substring(0,10)
+        let endDay = req.body.endDay.substring(0,10)
+        let cost = req.body.cost
         await contractService.addContractByClient(houseId,req.body,cost,parseInt(userId),price)
         res.status(200).json("thêm hợp đồng thành công")
     }
-    calculatorOfTheMonth = (startMonth, endMonth) => {
-        const startDate = new Date(startMonth);
-        const endDate = new Date(endMonth);
-        const delta:number = (endDate.getTime() - startDate.getTime()) / (86400000) + 1;
-        return delta <= 0?0: delta
-    }
+    // calculatorOfTheMonth = (startDay, endDay) => {
+    //     const startDate = new Date(startDay);
+    //     const endDate = new Date(endDay);
+    //     const delta:number = (endDate.getTime() - startDate.getTime()) / (86400000) + 1;
+    //     return delta <= 0?0: delta
+    // }
 }
 export default new ContractController()

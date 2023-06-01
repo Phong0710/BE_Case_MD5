@@ -16,7 +16,7 @@ class HouseService {
     findAllHouse = async () => {
         let houses = await this.houseRepository.find({
             relations: {
-                user:true,
+                user: true,
                 wards: true,
                 district: true,
                 city: true,
@@ -75,7 +75,7 @@ class HouseService {
         await this.houseRepository
             .createQueryBuilder()
             .update({
-                nameHouse:house.nameHouse,
+                nameHouse: house.nameHouse,
                 price: house.price,
                 area: house.area,
                 description: house.description,
@@ -92,15 +92,26 @@ class HouseService {
             }).where({id: id})
             .execute();
     }
+    DeleteHouseforRent = async (id) => {
+        if (id) {
+            await this.houseRepository.delete({id: id})
+        } else {
+            return 'khong ton tai'
+        }
+    }
     findHouseById = async (id) => {
         return await this.houseRepository.findOne({
             relations: {
                 user: true,
                 image: true,
+                wards: true,
+                district: true,
+                city: true,
             }, where: {
                 id: +id
             }, select: {
                 user: {
+                    phoneNumber: true,
                     name: true
                 }
             }
@@ -130,6 +141,27 @@ class HouseService {
             throw error;
         }
     };
+    getlistbyowner = async (id) => {
+        // return await this.houseRepository.find({
+        //     relations:{
+        //         image:true
+        //     },where: {
+        //         user:id
+        //     }
+        // })
+        try {
+            return await AppDataSource.createQueryBuilder()
+                .select("house")
+                .from(House, "house")
+                .innerJoinAndSelect("house.image", "image")
+
+                .where("house.userId = :id", {id: id})
+                .getMany()
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
 
 }
 

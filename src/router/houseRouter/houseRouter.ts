@@ -19,5 +19,7 @@ houseRouter.post('/', auth,
     houseController.createHouse);
 houseRouter.put('/:id', houseController.EditHouse);
 houseRouter.delete('/:id', houseController.DeleteHouseByOwnerShip);
+houseRouter.get("/user/:id",houseController.getListHouseById)
+    houseRouter.delete('/user/:id',houseController.delete)
 
 export default houseRouter

@@ -1,10 +1,11 @@
 import {Request, Response} from "express";
 import houseService from "../service/houseService";
-import {decode} from "jsonwebtoken";
 import imageService from "../service/imageService";
+import HouseService from "../service/houseService";
 
 
 class HouseController {
+    private houseService
 
     createHouse = async (req: Request, res: Response) => {
         let id=req["decode"].id
@@ -74,7 +75,17 @@ class HouseController {
         res.end();
 
     }
-
+    getListHouseById = async (req:Request, res:Response) => {
+        let id = req.params.id
+        let list = await houseService.getlistbyowner(id)
+        res.status(200).json(list)
+        res.end()
+    }
+    delete = async (req: Request, res: Response) => {
+        let id = parseInt(req.params.id)
+        let house = await houseService.DeleteHouseforRent(id);
+        res.status(200).json(house)
+    }
 
 }
 export default new HouseController();
