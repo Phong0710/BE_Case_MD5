@@ -1,4 +1,4 @@
-import {Router} from 'express'
+    import {Router} from 'express'
 import {auth} from "../../middleware/auth";
 
 // import {checkRoleClient} from "../middleware/checkRoleClient";
@@ -14,10 +14,12 @@ houseRouter.get('/', houseController.showAllHouse);
 
 houseRouter.get('/:id', houseController.showHouseById);
 
-houseRouter.post('/',auth,
+houseRouter.post('/', auth,
     // checkRoleLandlord,
     houseController.createHouse);
 houseRouter.put('/:id', houseController.EditHouse);
 houseRouter.delete('/:id', houseController.DeleteHouseByOwnerShip);
+houseRouter.get("/user/:id",houseController.getListHouseById)
+    houseRouter.delete('/user/:id',houseController.delete)
 
 export default houseRouter

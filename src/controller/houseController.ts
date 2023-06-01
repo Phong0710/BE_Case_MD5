@@ -1,10 +1,11 @@
 import {Request, Response} from "express";
 import houseService from "../service/houseService";
-import {decode} from "jsonwebtoken";
 import imageService from "../service/imageService";
+import HouseService from "../service/houseService";
 
 
 class HouseController {
+    private houseService
 
     createHouse = async (req: Request, res: Response) => {
         let id=req["decode"].id
@@ -21,6 +22,7 @@ class HouseController {
     }
     showHouseById = async (req: Request, res: Response) => {
         let id = req.params.id
+        console.log(id,1111)
         let house = await houseService.findHouseById(id)
         res.status(201).json(house);
         res.end();
@@ -57,7 +59,6 @@ class HouseController {
         if (!req.query.sort) {
             req.query.sort = "0"
         }
-
         console.log("query after set default:", req.query)
         let house = await houseService.findHouse(req.query)
         res.status(201).json(house);
@@ -74,7 +75,17 @@ class HouseController {
         res.end();
 
     }
+    getListHouseById = async (req:Request, res:Response) => {
+        let id = req.params.id
+        let list = await houseService.getlistbyowner(id)
+        res.status(200).json(list)
+        res.end()
+    }
+    delete = async (req: Request, res: Response) => {
+        let id = parseInt(req.params.id)
+        let house = await houseService.DeleteHouseforRent(id);
+        res.status(200).json(house)
+    }
 
 }
-
 export default new HouseController();

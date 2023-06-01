@@ -16,10 +16,15 @@ class HouseService {
     findAllHouse = async () => {
         let houses = await this.houseRepository.find({
             relations: {
+                user: true,
                 wards: true,
                 district: true,
                 city: true,
-                image: true
+                image: true,
+            }, select: {
+                user: {
+                    name: true
+                }
             }
         })
         return houses
@@ -70,7 +75,7 @@ class HouseService {
         await this.houseRepository
             .createQueryBuilder()
             .update({
-                nameHouse:house.nameHouse,
+                nameHouse: house.nameHouse,
                 price: house.price,
                 area: house.area,
                 description: house.description,
@@ -83,9 +88,16 @@ class HouseService {
         await this.houseRepository
             .createQueryBuilder()
             .update({
-                houseStatus:4
+                houseStatus: 4
             }).where({id: id})
             .execute();
+    }
+    DeleteHouseforRent = async (id) => {
+        if (id) {
+            await this.houseRepository.delete({id: id})
+        } else {
+            return 'khong ton tai'
+        }
     }
     findHouseById = async (id) => {
         return await this.houseRepository.findOne({
@@ -99,7 +111,7 @@ class HouseService {
                 id: +id
             }, select: {
                 user: {
-                    phoneNumber:true,
+                    phoneNumber: true,
                     name: true
                 }
             }
@@ -129,6 +141,27 @@ class HouseService {
             throw error;
         }
     };
+    getlistbyowner = async (id) => {
+        // return await this.houseRepository.find({
+        //     relations:{
+        //         image:true
+        //     },where: {
+        //         user:id
+        //     }
+        // })
+        try {
+            return await AppDataSource.createQueryBuilder()
+                .select("house")
+                .from(House, "house")
+                .innerJoinAndSelect("house.image", "image")
+
+                .where("house.userId = :id", {id: id})
+                .getMany()
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
 
 }
 
