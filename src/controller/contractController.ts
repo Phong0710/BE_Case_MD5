@@ -24,6 +24,7 @@ class ContractController{
         res.status(200).json(contract);
     }
     addContractByClient = async(req:Request, res:Response)=>{
+        console.log(req.body)
         let userId = req["decode"].id
         let houseId = req.body.houseId;
         let house = await houseService.findHouseById(houseId)

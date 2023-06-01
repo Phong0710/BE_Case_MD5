@@ -27,7 +27,10 @@ class HouseController {
     }
     EditHouse = async (req: Request, res: Response) => {
         let id = req.params.id
-        await houseService.updateHouse(id, req.body);
+        let data = req.body;
+        let imageData = data.image;
+        await houseService.updateHouse(id, data);
+        await imageService.upDateImage(imageData, id)
         res.status(201).json("update ok ");
         res.end();
     }

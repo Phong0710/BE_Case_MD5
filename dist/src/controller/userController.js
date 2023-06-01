@@ -7,6 +7,7 @@ const userService_1 = __importDefault(require("../service/userService"));
 class UserController {
     constructor() {
         this.Register = async (req, res) => {
+            console.log(req.body);
             let check = await userService_1.default.checkUserRegister(req.body);
             if (!check) {
                 await userService_1.default.createUser(req.body);
@@ -19,14 +20,7 @@ class UserController {
         this.Login = async (req, res) => {
             let userData = req.body;
             let user = await userService_1.default.checkUser(userData);
-            if (user.payload) {
-                res.status(200).json(user);
-            }
-            else {
-                res.status(400).json({
-                    massage: " login false"
-                });
-            }
+            res.status(200).json(user);
         };
     }
 }

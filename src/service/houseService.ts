@@ -89,10 +89,14 @@ class HouseService {
             relations: {
                 user: true,
                 image: true,
+                wards: true,
+                district: true,
+                city: true,
             }, where: {
                 id: +id
             }, select: {
                 user: {
+                    phoneNumber:true,
                     name: true
                 }
             }
