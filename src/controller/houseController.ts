@@ -62,9 +62,9 @@ class HouseController {
         let house = await houseService.findHouse(req.query)
         res.status(201).json(house);
     }
-    getDistris = async (req: Request, res: Response)=>{
-        let listDistrics = await houseService.getDistrictById()
-        res.status(201).json(listDistrics);
+    getDistrict = async (req: Request, res: Response)=>{
+        let districts = await houseService.getDistrictById()
+        res.status(201).json(districts);
         res.end();
     }
     getWards = async (req: Request, res: Response)=>{
@@ -74,7 +74,6 @@ class HouseController {
         res.end();
 
     }
-
 
 
 }

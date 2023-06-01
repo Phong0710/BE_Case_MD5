@@ -19,7 +19,7 @@ class UserService {
                 let pass = await bcrypt_1.default.compare(user.password, userFind.password);
                 if (pass) {
                     let payload;
-                    if (userFind.role === 1) {
+                    if (userFind.roleId === 1) {
                         payload = {
                             id: userFind.id,
                             username: userFind.username,

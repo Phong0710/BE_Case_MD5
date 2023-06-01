@@ -70,6 +70,7 @@ class HouseService {
         await this.houseRepository
             .createQueryBuilder()
             .update({
+                nameHouse:house.nameHouse,
                 price: house.price,
                 area: house.area,
                 description: house.description,
