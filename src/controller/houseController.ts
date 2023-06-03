@@ -20,12 +20,9 @@ class HouseController {
         res.end();
     }
     showHouseById = async (req: Request, res: Response) => {
-
         let id = req.params.id
-        console.log(id)
         let house = await houseService.findHouseById(id)
         res.status(201).json(house);
-        res.end();
     }
     EditHouse = async (req: Request, res: Response) => {
         let id = req.params.id
@@ -39,6 +36,14 @@ class HouseController {
     DeleteHouseByOwnerShip = async (req: Request, res: Response) => {
         let id = req.params.id
         await houseService.DeleteHouse(id);
+        console.log("delete ok")
+        res.status(201).json("DeleteHouse ok ");
+        res.end();
+    }
+    openHouseByOwnerShip = async (req: Request, res: Response) => {
+        let id = req.params.id
+        await houseService.openHouse(id);
+        console.log("open  ok")
         res.status(201).json("DeleteHouse ok ");
         res.end();
     }
@@ -59,7 +64,6 @@ class HouseController {
         if (!req.query.sort) {
             req.query.sort = "0"
         }
-
         console.log("query after set default:", req.query)
         let house = await houseService.findHouse(req.query)
         res.status(201).json(house);
@@ -75,6 +79,18 @@ class HouseController {
         res.status(201).json(listWards);
         res.end();
 
+    }
+    getListHouseById = async (req:Request, res:Response) => {
+        let id = req.params.id
+        let list = await houseService.getlistbyowner(id)
+        res.status(200).json(list)
+        res.end()
+    }
+    delete = async (req: Request, res: Response) => {
+        let id = parseInt(req.params.id)
+        console.log(id,"da vao BE")
+        let house = await houseService.DeleteHouseforRent(id);
+        res.status(200).json(house)
     }
 
 }
