@@ -20,9 +20,15 @@ class HouseService {
                 district: true,
                 city: true,
                 image: true,
+                houseStatus:true
             }, select: {
                 user: {
                     name: true
+                }
+            },
+            where:{
+                houseStatus:{
+                    id:3
                 }
             }
         })
