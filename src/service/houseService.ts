@@ -1,6 +1,5 @@
 import {AppDataSource} from "../data-source";
 import {House} from "../entity/house";
-import {query} from "express";
 import {House_status} from "../entity/house_status";
 import {City} from "../entity/city";
 import {District} from "../entity/district";
@@ -21,9 +20,15 @@ class HouseService {
                 district: true,
                 city: true,
                 image: true,
+                houseStatus:true
             }, select: {
                 user: {
                     name: true
+                }
+            },
+            where:{
+                houseStatus:{
+                    id:3
                 }
             }
         })
