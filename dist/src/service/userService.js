@@ -23,6 +23,8 @@ class UserService {
                         payload = {
                             id: userFind.id,
                             name: userFind.name,
+                            address: userFind.address,
+                            phoneNumber: userFind.phoneNumber,
                             username: userFind.username,
                             role: 1
                         };
@@ -30,6 +32,9 @@ class UserService {
                     else {
                         payload = {
                             id: userFind.id,
+                            name: userFind.name,
+                            address: userFind.address,
+                            phoneNumber: userFind.phoneNumber,
                             username: userFind.username,
                             role: 2
                         };
